@@ -1,7 +1,12 @@
 <?php
 
+$ini = parse_ini_file('datasource.ini');
 
-$jsonData = file_get_contents('http://nagiosjson.elucas.dev/statusJson.php');
+if (!$ini) {
+	die('datasource.ini file missing');
+}
+
+$jsonData = file_get_contents($ini['url']);
 
 if ($jsonData == false) {
   echo "Error getting data";
